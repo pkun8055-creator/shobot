@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ゆくしょー公式サーバー✅ - Official Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #5865F2; 
+            --bg-dark: #0b0c0e;
+            --text-main: #f2f3f5;
+            --accent-color: #00d4ff;
+            --admin-color: #ed4245;
+            --shiritori-color: #57f287;
+            --yt-color: #ff0000;
+            /* ほんのりピンク */
+            --sho-pink: rgba(255, 105, 180, 0.07);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* 背景グラデーション（ピンクを隠し味に） */
+            background: 
+                radial-gradient(circle at 50% -10%, var(--sho-pink) 0%, transparent 60%),
+                radial-gradient(circle at 0% 0%, rgba(88, 101, 242, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 100% 100%, rgba(0, 212, 255, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(11, 12, 14, 1) 0%, transparent 100%),
+                #0b0c0e;
+            background-attachment: fixed;
+        }
+
+        /* ハンバーガーメニュー */
+        .menu-wrapper { position: fixed; top: env(safe-area-inset-top, 20px); right: 20px; z-index: 1000; }
+        #menu-toggle { display: none; }
+        .menu-btn {
+            width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px); border-radius: 12px;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+        .nav-content {
+            position: fixed; top: 80px; right: 20px;
+            background: rgba(15, 16, 18, 0.98); backdrop-filter: blur(20px);
+            padding: 15px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.9); opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        #menu-toggle:checked ~ .nav-content { transform: scale(1); opacity: 1; visibility: visible; }
+        .nav-content a { display: block; color: white; text-decoration: none; padding: 12px 20px; font-weight: bold; border-radius: 8px; }
+        .nav-content a:hover { background: var(--primary-color); }
+
+        header { padding: clamp(80px, 15vh, 140px) 20px; text-align: center; }
+
+        .container { width: 90%; max-width: 900px; margin: 0 auto; padding: 20px 0; }
+
+        /* バッジの幅を文字に合わせる修正 */
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 800; margin: 10px 0; letter-spacing: -1px; }
+
+        /* ぐるぐるボーダーアニメーション */
+        .card {
+            position: relative;
+            border-radius: 24px;
+            margin-bottom: clamp(20px, 4vh, 40px);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2px; /* 光る枠の太さ */
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --card-theme: var(--accent-color);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 70%, var(--card-theme) 100%);
+            animation: spinBorder 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .card:hover { transform: translateY(-8px); }
+        .card:hover::before { opacity: 1; }
+
+        @keyframes spinBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-inner {
+            position: relative;
+            background: rgba(20, 21, 23, 0.96);
+            backdrop-filter: blur(15px);
+            border-radius: 22px;
+            padding: clamp(20px, 5vw, 40px);
+            z-index: 1;
+            height: 100%;
+        }
+
+        h2 { font-size: clamp(1.2rem, 5vw, 1.8rem); margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+        .btn {
+            padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: bold;
+            transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-server { background: white; color: var(--primary-color); }
+        .btn-youtube { background: var(--yt-color); color: white; }
+
+        .cmd-detail { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .cmd-name { font-family: 'Consolas', monospace; color: var(--accent-color); font-weight: bold; }
+        .cmd-desc { font-size: 0.9em; color: #ccc; }
+
+        .footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+
+<div class="menu-wrapper">
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-btn"><i class="fas fa-bars" style="color: white;"></i></label>
+    <nav class="nav-content">
+        <a href="#intro">トップ</a>
+        <a href="#about">サーバーについて</a>
+        <a href="#shiritori">しりとり</a>
+        <a href="#rank">ランキング</a>
+        <a href="#admin">管理コマンド</a>
+    </nav>
+</div>
+
+<header id="intro">
+    <div class="badge">Official Website</div>
+    <h1>ゆくしょー公式サーバー✅</h1>
+    <p>10,000人以上が参加する、Robloxコミュニティの最前線。</p>
+    <div class="btn-group">
+        <a href="#" class="btn btn-server"><i class="fab fa-discord"></i> サーバーに参加</a>
+        <a href="https://www.youtube.com/@ゆくしょー" target="_blank" class="btn btn-youtube"><i class="fab fa-youtube"></i> チャンネル</a>
+    </div>
+</header>
+
+<div class="container">
+    
+    <section id="about">
+        <div class="card" style="--card-theme: var(--accent-color);">
+            <div class="card-inner">
+                <h2><i class="fas fa-users" style="color: var(--accent-color);"></i> どんなサーバー？</h2>
+                <p><strong>ゆくしょー公式サーバー</strong>は、YouTubeチャンネル登録者1万人を誇る「しょー」さんの公式コミュニティです。Robloxをメインに、毎日多くのプレイヤーが交流しています。</p>
+                <ul style="color: #ccc; padding-left: 20px;">
+                    <li><strong>Roblox交流:</strong> 一緒にプレイする仲間を探したり、攻略情報を交換。</li>
+                    <li><strong>安全な環境:</strong> 24時間体制のモデレーションと、独自開発の専属Botがみんなの活動をサポートします。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="shiritori">
+        <div class="card" style="--card-theme: var(--shiritori-color);">
+            <div class="card-inner">
+                <h2><i class="fas fa-bomb" style="color: var(--shiritori-color);"></i> 究極のしりとり</h2>
+                <p>専属Botによるスリル満点のゲーム！いつ終わるか分からない「✕文字」の恐怖に打ち勝て。</p>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; font-size: 0.9em;">
+                    <p><strong>ルール:</strong> カタカナ・ひらがな限定。小さい「ゃゅょ」は大きい文字に変換。「ー」で終わる場合はその前の文字が次になります。秘密の「✕文字」を送ると全員強制リセット！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rank">
+        <div class="card" style="--card-theme: #f1c40f;">
+            <div class="card-inner">
+                <h2><i class="fas fa-handshake" style="color: #f1c40f;"></i> 仲介ランキング</h2>
+                <p>サーバー内取引の信頼性を高めるため、仲介実績をポイント化して集計しています。</p>
+                <div class="cmd-detail">
+                    <span class="cmd-name">/rank_now</span>
+                    <span class="cmd-desc">自分の順位を確認。毎週日曜日午前0時0分に公式発表が行われます。</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admin">
+        <div class="card" style="--card-theme: var(--admin-color);">
+            <div class="card-inner">
+                <h2><i class="fas fa-shield-halved" style="color: var(--admin-color);"></i> 管理者コマンド一覧</h2>
+                <div class="cmd-detail">
+                    <span class="cmd-name">/add_bot_admin</span><span class="cmd-desc">Botの操作権限を付与します。</span>
+                </div>
+                <div class="cmd-detail">
+                    <span class="cmd-name">/add_blacklist</span><span class="cmd-desc">荒らしユーザーをブラックリストへ。ブラックリストに登録されたユーザーが入ってきた場合、24h自動でTimeOut。bot管理者がBAN・許可・48hTimeOutを選択できます。</span>
+                </div>
+                <div class="cmd-detail">
+                    <span class="cmd-name">/add_filter</span><span class="cmd-desc">禁止用語を設定し、禁止用語が発言されたら自動削除。</span>
+                </div>
+                <p style="font-size: 0.8em; opacity: 0.6; margin-top: 10px;">※bot管理者以外は実行できません。</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<div class="footer">
+    Developed by ぴー & Gemini | &copy; 2026 ゆくしょー公式サーバー
+</div>
+
+<script>
+    const toggle = document.getElementById('menu-toggle');
+    document.querySelectorAll('.nav-content a').forEach(a => {
+        a.addEventListener('click', () => toggle.checked = false);
+    });
+    document.addEventListener('click', (e) => {
+        if (!document.querySelector('.menu-wrapper').contains(e.target)) toggle.checked = false;
+    });
+</script>
+
+</body>
+</html>
