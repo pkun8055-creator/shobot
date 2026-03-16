@@ -126,6 +126,42 @@
             padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: bold;
             transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
         }
+        /* --- ボタンのアニメーション追加箇所 --- */
+        .btn {
+            padding: 14px 28px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-weight: bold;
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px;
+    
+            /* ↓ここからアニメーションの設定 */
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); /* 滑らかな動き */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 最初は薄い影 */
+        }
+
+        .btn:hover {
+            transform: translateY(-5px); /* 上にふわっと浮き上がる */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* 影を濃くして浮遊感を出す */
+            filter: brightness(1.1); /* 少し明るくする */
+        }
+
+        .btn:active {
+            transform: translateY(-2px); /* クリックした瞬間に少し沈む */
+        }
+
+        /* Discordボタン固有のホバー（青い光） */
+        .btn-server:hover {
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+        }
+
+        /* YouTubeボタン固有のホバー（赤い光） */
+        .btn-youtube:hover {
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+        }
         .btn-server { background: white; color: var(--primary-color); }
         .btn-youtube { background: var(--yt-color); color: white; }
 
